@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/presets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--        <Button-->
+            <!--            android:layout_width="@dimen/tmp_medium"-->
+            <!--            android:layout_height="@dimen/tmp_medium"-->
+            <!--            android:layout_marginHorizontal="@dimen/tmp_small"/>-->
+            <!--        <Button-->
+            <!--            android:layout_width="@dimen/tmp_medium"-->
+            <!--            android:layout_height="@dimen/tmp_medium"-->
+            <!--            android:layout_marginHorizontal="@dimen/tmp_small"/>-->
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/input_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tmp_medium"
+            android:autofillHints="Hello World!"
+            android:hint="Enter Text"
+            android:inputType="text" />
+
+        <RadioGroup
+            android:id="@+id/radio"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tmp_big">
+
+            <RadioButton
+                android:id="@+id/radio_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Count" />
+
+            <RadioButton
+                android:id="@+id/radio_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grid" />
+        </RadioGroup>
+
+        <RelativeLayout
+            android:id="@+id/layout_count"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tmp_big"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/count_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Count"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <EditText
+                android:id="@+id/input_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/tmp_small"
+                android:layout_toRightOf="@id/count_text"
+                android:hint="how many times?"
+                android:inputType="numberDecimal"
+                android:nextFocusDown="@id/copy" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_grid"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tmp_big"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/tmp_small"
+                android:text="rows" />
+
+            <EditText
+                android:id="@+id/input_rows"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/tmp_small"
+                android:autofillHints="hints"
+                android:hint="horizontal"
+                android:inputType="numberDecimal"
+                android:nextFocusDown="@id/input_columns" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/tmp_small"
+                android:text="columns" />
+
+            <EditText
+                android:id="@+id/input_columns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/tmp_small"
+                android:autofillHints="hints"
+                android:hint="vertical"
+                android:inputType="numberDecimal"
+                android:nextFocusDown="@id/copy" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/out_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground" />
+
+        <Button
+            android:id="@+id/copy"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/tmp_medium"
+            android:minWidth="@dimen/tmp_medium"
+            android:text="Generate"
+            android:visibility="gone" />
+    </LinearLayout>
+</ScrollView>
