@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="tmp_big">160dp</dimen>
-    <dimen name="tmp_medium">80dp</dimen>
-    <dimen name="tmp_small">10dp</dimen>
+    <dimen name="padding">16dp</dimen>
 </resources>

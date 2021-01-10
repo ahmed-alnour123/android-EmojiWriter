@@ -10,18 +10,16 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-
-    String[] wordsList;
-
     EditText textInput;
     TextView outTextView;
 
@@ -61,13 +59,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout presets = findViewById(R.id.presets);
         RadioGroup radioGroup = findViewById(R.id.radio);
         RadioButton countRadioButton = radioGroup.findViewById(R.id.radio_count);
         RadioButton gridRadioButton = radioGroup.findViewById(R.id.radio_grid);
-        RelativeLayout countLayout = findViewById(R.id.layout_count);
+        LinearLayout countLayout = findViewById(R.id.layout_count);
         LinearLayout gridLayout = findViewById(R.id.layout_grid);
-        Button copyButton = findViewById(R.id.copy);
+        Button copyButton = findViewById(R.id.generate);
         outTextView = findViewById(R.id.out_text_view);
         textInput = findViewById(R.id.input_text);
 
@@ -91,10 +88,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getRandomChar() {
-        wordsList = textInput.getText().toString().split("\\s+");
+        ArrayList<String> wordsList = new ArrayList<>(Arrays.asList(textInput.getText().toString().split("\\s+|\\n")));
+
+        if (wordsList.size() == 1 && wordsList.get(0).equals("")) {
+            return "";
+        }
+
+        if (wordsList.size() == 1) {
+            String text = wordsList.get(0);
+            wordsList = new ArrayList<>(); // empty list
+            for (int i : text.codePoints().toArray()) { // get code points
+                wordsList.add(new String(Character.toChars(i))); // convert code points to string then add it to list
+            }
+        }
         Random r = new Random();
-        int index = r.nextInt(wordsList.length);
-        return wordsList[index];
+        int start = wordsList.get(0).equals("") ? 1 : 0; // get the starting index considering if the first element is empty string
+        int index = start + r.nextInt(wordsList.size() - start); // change the range of random index considering the first element
+        return wordsList.get(index);
     }
 
     private void setClipboard(String s) {
@@ -103,4 +113,5 @@ public class MainActivity extends AppCompatActivity {
         clipManager.setPrimaryClip(clipData);
         Toast.makeText(this, "copied to clipboard", Toast.LENGTH_SHORT).show();
     }
+
 }
