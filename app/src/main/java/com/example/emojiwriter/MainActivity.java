@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener countListener = v -> {
         EditText countEditText = findViewById(R.id.input_count);
         int count = Integer.parseInt(countEditText.getText().toString());
+        if(count <= 0){
+            return;
+        }
         StringBuilder outStringBuilder = new StringBuilder();
 
         for (int i = 0; i < count; i++) {
@@ -41,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         EditText columnsEditText = findViewById(R.id.input_columns);
         int rows = Integer.parseInt(rowsEditText.getText().toString());
         int columns = Integer.parseInt(columnsEditText.getText().toString());
+        if (rows <= 0 || columns <= 0){
+            return;
+        }
         StringBuilder outStringBuilder = new StringBuilder();
 
         String separator = "\n";
